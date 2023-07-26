@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { phoneNumberValidation } from '../utils/validations';
@@ -14,7 +14,7 @@ interface FieldValuesInterface {
 const defaultFieldValues: FieldValuesInterface = {
   firstName: '',
   lastName: '',
-  phoneNumber: '', //local storage is saving this as a string
+  phoneNumber: '',
   address: '',
 }
 
