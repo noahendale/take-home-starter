@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Button, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { phoneNumberValidation } from '../utils/validations';
 
 
 interface FieldValuesInterface {
   firstName: string;
   lastName: string;
-  phoneNumber: number;
+  phoneNumber: string;
   address: string;
 }
 
 const defaultFieldValues: FieldValuesInterface = {
   firstName: '',
   lastName: '',
-  phoneNumber: 0, //local storage is saving this as a string
+  phoneNumber: '', //local storage is saving this as a string
   address: '',
 }
 
 const UserInfo = () => {
-  // console.log(fieldValues)
-
   const [userInfo, setUserInfo] = useState(() => {
     const storedUserInfo = localStorage.getItem('userInfo')
 
@@ -32,7 +31,6 @@ const UserInfo = () => {
 
   const handleChange = (e: any) => {
     const { name, value } = e.target
-    // console.log(name, value)
 
     setUserInfo((prevFormData: FieldValuesInterface) => ({
       ...prevFormData,
@@ -45,7 +43,24 @@ const UserInfo = () => {
 }, [userInfo]);
 
   const handleNext = () => {
-    navigate('/pokemon')
+    if (
+      !userInfo.firstName ||
+      !userInfo.lastName ||
+      !userInfo.phoneNumber ||
+      !userInfo.address // validate address??
+    ) {
+      alert('Please fill in all fields before proceeding.');
+    } else if (!userInfo.phoneNumber.match(phoneNumberValidation)) {
+      alert(`
+        Please use one of the following phone number formats:
+        (123) 456-7890
+        (123)456-7890
+        123-456-7890
+        1234567890
+      `)
+    }else {
+      navigate('/pokemon');
+    }
   }
   return (
     <>
