@@ -24,10 +24,9 @@ const StyledSpan = styled.span`
 const Pokemon = () => {
   const [pokemon, setPokemon] = useState<PokemonInterface>({})
   const [searchValue, setSearchValue] = useState(() => {
-    const storedSearchValue = localStorage.getItem('pokemonSearchValue')
+    const storedSearchValue = localStorage.getItem('pokemonName')
 
-    if (storedSearchValue !== null) return JSON.parse(storedSearchValue)
-
+    if (storedSearchValue) return JSON.parse(storedSearchValue)
     return ''
   })
 
@@ -57,8 +56,10 @@ const Pokemon = () => {
   }
 
   useEffect(() => {
-    localStorage.setItem('pokemonSearchValue', JSON.stringify(searchValue))
-  }, [searchValue]);
+    pokemon.name
+    ? localStorage.setItem('pokemonName', JSON.stringify(pokemon.name))
+    : localStorage.setItem('pokemonName', '')
+  }, [pokemon]);
 
   return (
     <>
