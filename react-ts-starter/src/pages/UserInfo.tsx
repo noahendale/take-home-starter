@@ -40,7 +40,8 @@ const UserInfo = () => {
 
   useEffect(() => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
-}, [userInfo]);
+    console.log('saved') //TODO: Add a notification with debounce
+  }, [userInfo]);
 
   const handleNext = () => {
     if (
@@ -64,10 +65,38 @@ const UserInfo = () => {
   }
   return (
     <>
-      <TextField required label="First Name" id="firstName" name="firstName" onChange={handleChange} value={userInfo?.firstName}/>
-      <TextField required label="Last Name" id="lastName" name="lastName" onChange={handleChange} value={userInfo?.lastName}/>
-      <TextField required label="Phone Number" id="phoneNumber" name="phoneNumber" onChange={handleChange} value={userInfo?.phoneNumber}/>
-      <TextField required label="Address" multiline rows={4} id="address" name="address" onChange={handleChange} value={userInfo?.address}/>
+      <TextField
+        required
+        label="First Name"
+        id="firstName"
+        name="firstName"
+        onChange={handleChange}
+        value={userInfo?.firstName}
+      />
+      <TextField
+        required
+        label="Last Name"
+        id="lastName"
+        name="lastName"
+        onChange={handleChange}
+        value={userInfo?.lastName}
+      />
+      <TextField
+        required
+        label="Phone Number"
+        id="phoneNumber"
+        name="phoneNumber"
+        onChange={handleChange}
+        value={userInfo?.phoneNumber}
+      />
+      <TextField
+        required multiline rows={4}
+        label="Address"
+        id="address"
+        name="address"
+        onChange={handleChange}
+        value={userInfo?.address}
+      />
 
       <Button onClick={handleNext}>Next</Button>
     </>

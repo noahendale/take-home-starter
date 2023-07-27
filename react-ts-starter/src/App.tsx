@@ -9,15 +9,13 @@ function App() {
   return (
     <div className="App">
       <h1>Choose Your Pokemon!</h1>
-      <form action="#">
-        <BrowserRouter>
-          <Routes>
-            <Route path="userinfo" element={<UserInfo />}></Route>
-            <Route path="pokemon" element={<Pokemon/>}></Route>
-            <Route path="review" element={<Review/>}></Route>
-          </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<UserInfo />}></Route>
+          <Route path="pokemon" element={<Pokemon/>}></Route>
+          <Route path="review" element={<Review/>}></Route>
+        </Routes>
         </BrowserRouter>
-      </form>
     </div>
   );
 }
