@@ -40,7 +40,6 @@ const UserInfo = () => {
 
   useEffect(() => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    console.log('saved') //TODO: Add a notification with debounce
   }, [userInfo]);
 
   const handleNext = () => {
@@ -69,6 +68,7 @@ const UserInfo = () => {
         required
         label="First Name"
         id="firstName"
+        inputProps={{"data-testid": "firstName"}}
         name="firstName"
         onChange={handleChange}
         value={userInfo?.firstName}
@@ -77,6 +77,7 @@ const UserInfo = () => {
         required
         label="Last Name"
         id="lastName"
+        inputProps={{"data-testid": "lastName"}}
         name="lastName"
         onChange={handleChange}
         value={userInfo?.lastName}
@@ -85,6 +86,7 @@ const UserInfo = () => {
         required
         label="Phone Number"
         id="phoneNumber"
+        inputProps={{"data-testid": "phoneNumber"}}
         name="phoneNumber"
         onChange={handleChange}
         value={userInfo?.phoneNumber}
@@ -93,12 +95,13 @@ const UserInfo = () => {
         required multiline rows={4}
         label="Address"
         id="address"
+        inputProps={{"data-testid": "address"}}
         name="address"
         onChange={handleChange}
         value={userInfo?.address}
       />
 
-      <Button onClick={handleNext}>Next</Button>
+      <Button onClick={handleNext} data-testid="nextButton">Next</Button>
     </>
   )
 }

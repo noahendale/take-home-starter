@@ -66,17 +66,20 @@ const Pokemon = () => {
       <TextField
         required
         label="Your fav Pokemon"
+        id="pokemon"
+        name="pokemon"
+        inputProps={{"data-testid": "pokemon"}}
         onChange={e => setSearchValue(e.target.value)}
         value={searchValue}
       />
       <CardContent>
-        <Button onClick={handleBackClick}>Back</Button>
-        <Button onClick={handleSearchClick}>Search</Button>
+        <Button onClick={handleBackClick} data-testid="back">Back</Button>
+        <Button onClick={handleSearchClick} data-testid="search">Search</Button>
       </CardContent>
       {Object.keys(pokemon).length > 0
       &&
       <StyledCard>
-        <CardContent role="button" onClick={handleSelectClick}>
+        <CardContent role="button" onClick={handleSelectClick} data-testid="pokemonResult">
           <Typography variant="h6">Click to select <StyledSpan>{pokemon.name}</StyledSpan></Typography>
           <img src={pokemon.sprites?.front_default} alt={pokemon.name} />
         </CardContent>
