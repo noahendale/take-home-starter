@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, Card, CardContent, TextField } from '@mui/material'
+import { Button, CardContent, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { phoneNumberValidation } from '../utils/validations';
 import styled from '@emotion/styled';
@@ -57,7 +57,7 @@ const UserInfo = () => {
       !userInfo.firstName ||
       !userInfo.lastName ||
       !userInfo.phoneNumber ||
-      !userInfo.address // validate address??
+      !userInfo.address
     ) {
       alert('Please fill in all fields before proceeding.');
     } else if (!userInfo.phoneNumber.match(phoneNumberValidation)) {
@@ -73,48 +73,46 @@ const UserInfo = () => {
     }
   }
   return (
-    <Card>
-      <StyledCardContent>
-        <StyledTextField
-          required
-          label="First Name"
-          id="firstName"
-          inputProps={{"data-testid": "firstName"}}
-          name="firstName"
-          onChange={handleChange}
-          value={userInfo?.firstName}
-        />
-        <StyledTextField
-          required
-          label="Last Name"
-          id="lastName"
-          inputProps={{"data-testid": "lastName"}}
-          name="lastName"
-          onChange={handleChange}
-          value={userInfo?.lastName}
-        />
-        <StyledTextField
-          required
-          label="Phone Number"
-          id="phoneNumber"
-          inputProps={{"data-testid": "phoneNumber"}}
-          name="phoneNumber"
-          onChange={handleChange}
-          value={userInfo?.phoneNumber}
-        />
-        <StyledTextField
-          required multiline rows={4}
-          label="Address"
-          id="address"
-          inputProps={{"data-testid": "address"}}
-          name="address"
-          onChange={handleChange}
-          value={userInfo?.address}
-        />
+    <StyledCardContent>
+      <StyledTextField
+        required
+        label="First Name"
+        id="firstName"
+        inputProps={{"data-testid": "firstName"}}
+        name="firstName"
+        onChange={handleChange}
+        value={userInfo?.firstName}
+      />
+      <StyledTextField
+        required
+        label="Last Name"
+        id="lastName"
+        inputProps={{"data-testid": "lastName"}}
+        name="lastName"
+        onChange={handleChange}
+        value={userInfo?.lastName}
+      />
+      <StyledTextField
+        required
+        label="Phone Number"
+        id="phoneNumber"
+        inputProps={{"data-testid": "phoneNumber"}}
+        name="phoneNumber"
+        onChange={handleChange}
+        value={userInfo?.phoneNumber}
+      />
+      <StyledTextField
+        required multiline rows={4}
+        label="Address"
+        id="address"
+        inputProps={{"data-testid": "address"}}
+        name="address"
+        onChange={handleChange}
+        value={userInfo?.address}
+      />
 
-        <Button onClick={handleNext} data-testid="nextButton">Next</Button>
-      </StyledCardContent>
-    </Card>
+      <Button onClick={handleNext} data-testid="nextButton">Next</Button>
+    </StyledCardContent>
   )
 }
 
