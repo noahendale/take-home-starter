@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Button, TextField } from '@mui/material'
+import { Button, CardContent, TextField } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { phoneNumberValidation } from '../utils/validations';
-
+import styled from '@emotion/styled';
 
 interface FieldValuesInterface {
   firstName: string;
@@ -17,6 +17,16 @@ const defaultFieldValues: FieldValuesInterface = {
   phoneNumber: '',
   address: '',
 }
+
+const StyledCardContent = styled(CardContent)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const StyledTextField = styled(TextField)`
+  margin-bottom: 1rem;
+`
 
 const UserInfo = () => {
   const [userInfo, setUserInfo] = useState(() => {
@@ -40,7 +50,6 @@ const UserInfo = () => {
 
   useEffect(() => {
     localStorage.setItem('userInfo', JSON.stringify(userInfo))
-    console.log('saved') //TODO: Add a notification with debounce
   }, [userInfo]);
 
   const handleNext = () => {
@@ -48,7 +57,7 @@ const UserInfo = () => {
       !userInfo.firstName ||
       !userInfo.lastName ||
       !userInfo.phoneNumber ||
-      !userInfo.address // validate address??
+      !userInfo.address
     ) {
       alert('Please fill in all fields before proceeding.');
     } else if (!userInfo.phoneNumber.match(phoneNumberValidation)) {
@@ -64,42 +73,46 @@ const UserInfo = () => {
     }
   }
   return (
-    <>
-      <TextField
+    <StyledCardContent>
+      <StyledTextField
         required
         label="First Name"
         id="firstName"
+        inputProps={{"data-testid": "firstName"}}
         name="firstName"
         onChange={handleChange}
         value={userInfo?.firstName}
       />
-      <TextField
+      <StyledTextField
         required
         label="Last Name"
         id="lastName"
+        inputProps={{"data-testid": "lastName"}}
         name="lastName"
         onChange={handleChange}
         value={userInfo?.lastName}
       />
-      <TextField
+      <StyledTextField
         required
         label="Phone Number"
         id="phoneNumber"
+        inputProps={{"data-testid": "phoneNumber"}}
         name="phoneNumber"
         onChange={handleChange}
         value={userInfo?.phoneNumber}
       />
-      <TextField
+      <StyledTextField
         required multiline rows={4}
         label="Address"
         id="address"
+        inputProps={{"data-testid": "address"}}
         name="address"
         onChange={handleChange}
         value={userInfo?.address}
       />
 
-      <Button onClick={handleNext}>Next</Button>
-    </>
+      <Button onClick={handleNext} data-testid="nextButton">Next</Button>
+    </StyledCardContent>
   )
 }
 
