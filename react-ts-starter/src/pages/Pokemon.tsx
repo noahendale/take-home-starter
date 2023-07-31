@@ -34,7 +34,7 @@ const Pokemon = () => {
 
   const handleSearchClick = async () => {
     try {
-      const res = await fetch(`${pokemonEndpoint}/${searchValue}`)
+      const res = await fetch(`${pokemonEndpoint}/${searchValue.toLowerCase()}`)
 
       if (!res.ok) throw new Error('Failed to fetch pokemon')
 
