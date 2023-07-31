@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## How to use the app
+
+The first page is asking for user info. Once a value is typed in the inputs, it's stored in localStorage. The same goes for the pokemon value. I'm using react-router-dom to allow users to go directly to a specific page.
+
 ## Available Scripts
 
 In the project directory, you can run:
